@@ -4,9 +4,7 @@
 >
 > 模板：https://gwxzj3n0h7.feishu.cn/wiki/LuvQwo9SVi49ugk0Wk4cFP7Inve
 >
-> 源代码：https://github.com/arshtyi/SDU-Information-Retrieval-And-Data-Mining/blob/main/homework/main.md
->
-> 转换：https://github.com/arshtyi/SDU-Information-Retrieval-And-Data-Mining/blob/main/homework/script
+> 源码：https://github.com/arshtyi/SDU-Information-Retrieval-And-Data-Mining/blob/main/homework/main.md
 >
 > 本文：https://tcnohkxjw4rb.feishu.cn/wiki/TqSJwE07LiQNv0kHcGncHqrnnON
 
@@ -23,7 +21,7 @@
 
 ---
 
-分别计算恰好 $1,2,3$ 人射中的概率为 $0.36,0.41,0.14$,由全概率公式得$$ P=0.36\times0.2+0.41\times0.6+0.14\times1=0.458 $$
+分别计算恰好 $1,2,3$ 人射中的概率为 $0.36,0.41,0.14$,由全概率公式得 $$P=0.36\times0.2+0.41\times0.6+0.14\times1=0.458$$
 
 ## 2
 
@@ -57,7 +55,7 @@ $$E=\frac{1}{11}\times100+\frac{10}{11}\times1=10$$
 
 ## 4
 
-有如下数据集，则条件概率 $P(A\mid-),P(B\mid-),P(C\mid-)$分别为
+有如下数据集，则条件概率 $P(A\mid-),P(B\mid-),P(C\mid-)$ 分别为
 |$A$|$B$|$C$|类|
 |:-:|:-:|:-:|:-:|
 |$0$|$0$|$0$|$+$|
