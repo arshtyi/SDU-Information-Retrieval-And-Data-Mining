@@ -8,3 +8,5 @@ homework:
 
 lab:
   cargo run --manifest-path lab/script/Cargo.toml --release
+
+all: homework lab
