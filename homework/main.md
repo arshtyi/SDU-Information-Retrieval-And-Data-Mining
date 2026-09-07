@@ -4,7 +4,7 @@
 >
 > 模板：https://gwxzj3n0h7.feishu.cn/wiki/LuvQwo9SVi49ugk0Wk4cFP7Inve
 >
-> 源码：https://github.com/arshtyi/SDU-Information-Retrieval-And-Data-Mining/blob/main/homework/main.md
+> 源码：https://github.com/arshtyi/SDU-Information-Retrieval-And-Data-Mining
 >
 > 本文：https://tcnohkxjw4rb.feishu.cn/wiki/TqSJwE07LiQNv0kHcGncHqrnnON
 
