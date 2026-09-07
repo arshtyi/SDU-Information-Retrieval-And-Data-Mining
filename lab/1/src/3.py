@@ -12,7 +12,7 @@ def feature_scaling(data):
     value_range = max_val - min_val
     range_safe = np.where(value_range == 0, 1, value_range)
     min_max_scaled = (data - min_val) / range_safe
-    return np.round(standardized, 4), np.round(min_max_scaled, 4)
+    return np.round(standardized, 4).tolist(), np.round(min_max_scaled, 4).tolist()
 
 
 # 主程序
