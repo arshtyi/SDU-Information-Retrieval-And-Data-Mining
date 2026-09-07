@@ -45,21 +45,7 @@
 
 ### 代码
 
-```python
-import numpy as np
-def linear_regression_normal_equation(X: list[list[float]], y: list[float]) -> list[float]:
-    return np.round((np.linalg.inv(X.T @ X) @ X.T @ y).flatten(), 4).tolist()
-if __name__ == "__main__":
-    import ast
-    x = np.array(ast.literal_eval(input()))
-    y = np.array(ast.literal_eval(input())).reshape(-1, 1)
-
-    # Perform linear regression
-    coefficients = linear_regression_normal_equation(x, y)
-
-    # Print the coefficients
-    print(coefficients)
-```
+[1.py]
 
 ## ML2 使用梯度下降的线性回归
 
@@ -98,34 +84,43 @@ if __name__ == "__main__":
 
 ### 代码
 
-```python
-import numpy as np
-def linear_regression_gradient_descent(X, y, alpha, iterations):
-    m, n = X.shape
-    theta = np.zeros((n, 1), dtype=float)
-    for _ in range(iterations):
-        y_pred = X @ theta
-        gradient = (1 / m) * X.T @ (y_pred - y)
-        theta -= alpha * gradient
-    return np.round(theta.flatten(), 4).tolist()
-# 主程序
-if __name__ == "__main__":
-    # 输入矩阵和向量
-    matrix_inputx = input()
-    array_y = input()
-    alpha = input()
-    iterations = input()
+[2.py]
 
-    # 处理输入
-    import ast
-    matrix = np.array(ast.literal_eval(matrix_inputx))
-    y = np.array(ast.literal_eval(array_y)).reshape(-1,1)
-    alpha = float(alpha)
-    iterations = int(iterations)
+## ML3 特征扩展实现
 
-    # 调用函数计算逆矩阵
-    output = linear_regression_gradient_descent(matrix,y,alpha,iterations)
+### 描述
 
-    # 输出结果
-    print(output)
+编写一个函数，使用标准化和最小最大标准化对数据集执行特征缩放。
+该函数应采用 $2$ 维 NumPy 数组作为输入，其中每行代表一个数据样本，每列代表一个特征。返回两个 $2$ 维 NumPy 数组 数组：一个通过标准化缩放，一个通过最小-最大标准化缩放。
+输出结果均四舍五入保留小数点后后四位。
+
+### 输入描述：
+
+输入一个 $2$ 维 NumPy 数组
+
+### 输出描述：
+
+返回两个 $2$ 维 List 数组：一个通过标准化缩放，一个通过最小-最大标准化缩放。
+
+### 示例1
+
+```markdown
+输入：
+[[7, 13], [22, 8], [15, 29]]
+输出：
+([[-1.251, -0.4094], [1.1966, -0.9676], [0.0544, 1.377]], [[0.0, 0.2381], [1.0, 0.0], [0.5333, 1.0]])
 ```
+
+### 备注：
+
+1. Python3对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+1. 标准化：$$\frac{x-mean}{std}$$
+2. 最小-最大标准化缩放：$$\frac{x-min}{max-min}$$
+
+### 代码
+
+[3.py]
