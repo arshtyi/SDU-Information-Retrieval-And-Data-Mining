@@ -779,3 +779,43 @@ RMSE的计算公式为：$$RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^n(y_{\text{true}}-y_
 ### 代码
 
 [18.py]
+
+## ML19 计算二元分类的Jaccard指数
+
+### 描述
+
+实现一个函数来计算二元分类问题的Jaccard指数（Jaccard Index）。Jaccard指数是一个用于评估两个集合相似度的度量指标，在二分类任务中常用于评估预测结果与真实标签的重叠程度。
+
+Jaccard指数的计算公式为：$$\text{Jaccard Index}=\frac{Number of elements in the intersection of y_{\text{true}} and y_{\text{pred}}}{Number of elements in the union of y_{\text{true}} and y_{\text{pred}}}$$
+
+### 输入描述：
+
+第一行输入真实标签数组。
+第二行输入预测标签数组。
+
+### 输出描述：
+
+返回一个浮点数，表示Jaccard指数，结果保留 $3$ 位小数。
+
+### 示例1
+
+```txt
+输入：
+[1, 1, 0, 0]
+[1, 0, 0, 1]
+输出：
+0.333
+```
+
+### 备注：
+
+1. Python3对应的输入、输出已给出，您只用实现核心功能函数即可
+2. 支持numpy、scipy、pandas、scikit-learn库
+
+### 分析
+
+逻辑和或
+
+### 代码
+
+[19.py]
