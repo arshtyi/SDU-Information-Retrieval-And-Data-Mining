@@ -1510,3 +1510,49 @@ icecream beer
 ### 代码
 
 [34.py]
+
+## ML35 决策树学习
+
+### 描述
+
+实现一个基于信息增益的决策树学习算法。该算法使用递归的方式构建决策树，通过计算熵和信息增益来选择最优的特征进行数据集划分。
+请不要使用sklearn的DecisionTreeClassifier模型，建议手动实现。
+$$H(S)=-\sum_{i=1}^cp_i\log_2(p_i)$$
+$$IG(S,A)=H(S)-\sum_{v\in Values(A)}\frac{\|S_v\|}{\|S\|}H(S_v)$$
+
+### 输入描述：
+
+函数接收 $3$ 个参数：
+
+1. examples：列表，包含多个字典，每个字典表示一个训练样本
+2. attributes：列表，包含可用于划分的属性名
+3. target_attr：字符串，表示目标属性（类别标签）的名称
+
+### 输出描述：
+
+返回一个嵌套字典，表示学习到的决策树结构：
+
+- 内部节点：`{属性名: {属性值: 子树, ...}}`
+- 叶节点：直接返回类别值
+
+### 示例1
+
+```txt
+输入：
+[{"outlook": "sunny", "temp": "hot", "humidity": "high", "windy": "false", "play": "no"},{"outlook": "sunny", "temp": "hot", "humidity": "high", "windy": "true", "play": "no"},{"outlook": "overcast", "temp": "hot", "humidity": "high", "windy": "false", "play": "yes"},{"outlook": "rain", "temp": "mild", "humidity": "high", "windy": "false", "play": "yes"}]
+["outlook", "temp", "humidity", "windy"]
+"play"
+输出：
+{outlook:{overcast:yes,rain:yes,sunny:no}}
+```
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+### 代码
+
+[35.py]
