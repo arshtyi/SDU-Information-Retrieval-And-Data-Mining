@@ -1305,3 +1305,57 @@ bread,bread,apple,milk,milk
 ### 代码
 
 [30.py]
+
+## ML31 实现梯度下降
+
+### 描述
+
+实现三种不同的梯度下降算法，使用均方误差(MSE)作为损失函数。需要实现以下三种变体：
+
+1. 批量梯度下降(Batch Gradient Descent)
+2. 随机梯度下降(Stochastic Gradient Descent)
+3. 小批量梯度下降(Mini-batch Gradient Descent)
+
+$$MSE=\frac{1}{n}\sum_{i=1}^n(y_i-\hat(y)_i)^2$$
+
+### 输入描述：
+
+函数`gradient_descent`接收七个参数：
+
+1. $X$：特征矩阵，形状为 $(m, n)$
+2. $y$：目标值向量，形状为 $(m,)$
+3. weights：初始权重向量，形状为 $(n,)$
+4. learning_rate：学习率
+5. n_iterations：迭代次数
+6. batch_size：批量大小（仅用于mini-batch方法）
+7. method：使用的方法（'batch', 'stochastic' 或 'mini_batch'）
+
+### 输出描述：
+
+返回一个numpy数组，表示最终优化的权重向量。
+
+### 示例1
+
+```txt
+输入：
+[[1, 2], [3, 4], [5, 6]]
+[2, 4, 6]
+[0.5, 0.5]
+0.01
+100
+2
+'batch'
+输出：
+[0.46201996 0.63526154]
+```
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+### 代码
+
+[31.py]
