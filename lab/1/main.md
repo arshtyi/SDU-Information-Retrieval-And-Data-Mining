@@ -1462,3 +1462,51 @@ $$L(w,b)=\frac{1}{2n}\sum(y_i-(\sum X_{ij}w_j+b))^2+\alpha\sum\|w_j\|$$其中 $n
 ### 代码
 
 [33.py]
+
+## ML34 关联规则发现（Apriori算法）
+
+### 描述
+
+在数据挖掘中，关联规则学习是一种重要的技术，用于发现数据集中变量之间的关系。
+你需要实现Apriori算法，来生成频繁项集，并生成关联规则。
+不建议使用sklearn的库函数直接实现。
+支持度计算公式：$support(A) = \frac{\|{T\|A\in T}\|}{\|D\|}$，其中 $D$ 是所有事务的集合，$\|D\|$是事务的数量，$\|{T\|A\in T}\|$是包含项集 $A$ 的事务的数量。
+置信度计算公式：$confidence(A\rightarrow B) = support(A\cup B) / support(A)$，其中 $A$ 和 $B$ 是两个项集， $A\cup B$ 是 $A$ 和 $B$ 的并集，$support(A\cup B)$ 是包含 $A$ 和 $B$ 的事务的数量，$support(A)$ 是包含 $A$ 的事务的数量。
+
+### 输入描述：
+
+第一行输入一个整数 $n$，表示事务的数量。
+接下来 $n$ 行，每行输入一个事务，格式为“item1, item2, ..., itemk”，
+其中item1, item2, ..., item_k是事务中的项，用空格分隔。
+最后一行输入两个浮点数min_sup和min_conf，分别表示最小支持度和最小置信度。
+
+### 输出描述：
+
+输出关联规则及其置信度，按照置信度从高到低排序，置信度相同则按照规则前件大小升序排列，如若还是相同则按照规则后件大小升序排列
+格式为“规则前件 -> 规则后件: 置信度”。置信度保留两位小数。
+
+### 示例1
+
+```txt
+输入：
+5
+icecream pizza salad coffee beer butter diary cheese
+tea icecream
+wine
+salad pizza beer pizza butter milk wine chocolate icecream
+icecream beer
+0.55 0.64
+输出：
+{'beer'} -> {'icecream'}: 1.00
+{'icecream'} -> {'beer'}: 0.75
+```
+
+### 备注：
+
+支持numpy,scikit-learn,pandas等库
+
+### 分析
+
+### 代码
+
+[34.py]
