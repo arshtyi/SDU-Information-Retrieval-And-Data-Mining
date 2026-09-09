@@ -1606,3 +1606,49 @@ $$IG(S,A)=H(S)-\sum_{v\in Values(A)}\frac{\|S_v\|}{\|S\|}H(S_v)$$
 ### 代码
 
 [36.py]
+
+## ML37 实现AdaBoost拟合方法
+
+### 描述
+
+实现AdaBoost（Adaptive Boosting）算法的拟合方法。AdaBoost是一种集成学习算法，通过组合多个弱分类器来构建一个强分类器。
+基分类器使用决策树桩，分类阈值请采用集合内用于分割的某数据的某特恒值，分类标准使用分类错误率。
+
+### 输入描述：
+
+函数`adaboost_fit`接收三个参数：
+
+1. $X$：特征矩阵，numpy二维数组，形状为(n_samples, n_features)
+2. $y$：标签向量，numpy一维数组，形状为(n_samples,)，取值为$\{-1, 1\}$
+3. n_clf：弱分类器的数量，整数
+
+### 输出描述：
+
+返回一个列表，包含n_clf个字典，每个字典包含以下键值对：
+
+- 'polarity'：分类方向，$1$ 或 $-1$
+- 'threshold'：分类阈值
+- 'feature_index'：使用的特征索引
+- 'alpha'：分类器权重
+
+### 示例1
+
+```txt
+输入：
+[[1, 2], [2, 1], [3, 4]]
+[1, -1, 1]
+2
+输出：
+[{'polarity': 1, 'threshold': 2, 'feature_index': 1, 'alpha': 11.512925464970229}, {'polarity': 1, 'threshold': 2, 'feature_index': 1, 'alpha': 11.512925464970229}]
+```
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+### 代码
+
+[37.py]
