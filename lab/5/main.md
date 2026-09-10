@@ -59,3 +59,55 @@ I really want to like this phone, but the battery life makes it unusable.
 ### 提示词
 
 [1.md]
+
+## PROMPT2 商品信息解析系统
+
+### 描述
+
+我们的交易平台要上线一个新的后端服务，用于解析用户乱七八糟的商品标题。
+你需要写一个 Prompt，把用户的输入转换成我们规定的 JSON 格式。
+
+### 输入描述：
+
+一段用户描述。
+
+### 输出描述：
+
+```json
+{
+    "storage": "string", // 如 "256GB"，单位为GB
+    "is_device": boolean, // 是手机填 true，否则是false
+    "warning": boolean // 信息缺失的话填 true
+｝
+```
+
+### 示例1
+
+```txt
+输入：
+出的红米note12tpro，五一二的内存
+输出：
+{"storage": "512GB", "is_device": true, "warning": false}
+```
+
+### 示例2
+
+```txt
+输入：
+出一台没有保修的苹果16手机
+输出：
+{"storage": "", "is_device": true, "warning": true}
+```
+
+### 示例3
+
+```txt
+输入：
+华为手机入耳式耳机，9成新
+输出：
+{"storage": "", "is_device": false, "warning": true}
+```
+
+### 提示词
+
+[2.md]
