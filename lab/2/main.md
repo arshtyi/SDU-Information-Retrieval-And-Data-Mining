@@ -479,3 +479,39 @@ $$mse=\frac{1}{n}\sum_{i=1}^n(predictions_i-label_i)^2$$
 ### 代码
 
 [11.py]
+
+## DL12 实现基本自动微分操作
+
+### 描述
+
+实现一个支持基本自动微分（Automatic Differentiation）操作的`Value`类，该类需要支持标量值的基本运算并能够自动计算梯度。这是深度学习框架中的核心功能之一。
+
+### 输入描述：
+
+实现以下操作：
+
+1. 加法运算（`__add__`）
+2. 乘法运算（`__mul__`）
+3. ReLU激活函数（`relu`）
+4. 反向传播计算梯度（`backward`）
+
+### 输出描述：
+
+返回计算结果和梯度。
+
+### 示例1
+
+```txt
+输入：
+1
+2
+3
+输出：
+Value(data=1, grad=1) Value(data=2, grad=3) Value(data=3, grad=2) Value(data=7, grad=1) Value(data=14, grad=1) Value(data=21, grad=1) Value(data=21, grad=1)
+```
+
+### 分析
+
+### 代码
+
+[12.py]
