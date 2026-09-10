@@ -1525,3 +1525,73 @@ T+1下午2点，我们内部开个复盘会，Alice, Bob, Cindy参会，基础�
 ### 提示词
 
 [26.md]
+
+## PROMPT27 高校智能初审系统
+
+### 描述
+
+你的任务是根据申请人的学术成绩、竞赛奖项、诚信记录和校友关系，基于《本科招生初审标准 (v4.0)》，决定申请人的初审状态。
+
+知识库素材 (Knowledge Base)
+《本科招生初审标准 (v4.0)》
+
+[A.1] 诚信红线 (Integrity Veto - 优先级最高)：
+
+- 若申请人档案中标记 `cheating_history` 为 True（有作弊/学术不端记录）。
+- 无论其他条件多么优秀（含金牌），一律拒录。
+- 状态码：REJECT_ETHICS
+
+[A.2] 奥赛直通车 (Olympiad Direct - 优先级次高)：
+
+- 若申请人持有 "OLYMPIAD_GOLD" (国际奥赛金牌)。
+- 免除 GPA 和 标化成绩的门槛检查，直接录取。
+- 状态码：DIRECT_ADMIT
+
+[A.3] 学术门槛 (Academic Floor)：
+
+- 若 `gpa` < 3.0 (满分4.0)，视为学术能力不足，直接拒录。
+- 状态码：REJECT_ACADEMIC
+- _注：此规则仅针对无金牌的普通申请者。_
+
+[A.4] 综合评分 (Composite Scoring)：
+
+- 计算公式：`Index = (GPA * 25) + (SAT / 10)`。
+- 若 `Index` >= 220：进入面试。状态码：GRANT_INTERVIEW
+- 若 `Index` < 220：进入候补。状态码：WAITLIST
+
+[A.5] 校友传承 (Legacy Boost - 修正规则)：
+
+- 仅当 [A.4] 的判定结果为 "WAITLIST" 时生效。
+- 若申请人 `is_legacy` 为 True (校友子女)，将状态升级为面试。
+- 状态码：GRANT_INTERVIEW (升级后)
+
+### 输入描述：
+
+一段包含GPA、SAT分数、是否有作弊记录、最高奖项、是否校友子女的自然语言描述。
+
+### 输出描述：
+
+```json
+{
+    "decision_status": "string", //状态码
+    "composite_index": number, //综合评分
+    "hit_rule": []  //触发规则
+}
+```
+
+### 示例1
+
+```txt
+输入：
+申请人持有 OLYMPIAD_GOLD。GPA 2.5 (严重偏科)，SAT 1000。无作弊。
+输出：
+{
+"decision_status": "DIRECT_ADMIT",
+"composite_index": 0,
+"hit_rule": "[A.2]"
+}
+```
+
+### 提示词
+
+[27.md]
