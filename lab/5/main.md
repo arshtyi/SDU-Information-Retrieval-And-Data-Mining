@@ -219,3 +219,52 @@ I really want to like this phone, but the battery life makes it unusable.
 ### 提示词
 
 [4.md]
+
+## PROMPT5 食材解析系统
+
+### 描述
+
+你正在为一家智能厨房管理系统开发食材解析模块。用户会通过语音或文本输入食材信息，格式非常随意（如"来点面粉"、"切好的土豆200克"、"3个鸡蛋"等）。
+你需要编写一个 Prompt，将用户的自然语言输入转换为标准的 JSON 格式。
+返回格式定义：
+数量提取：浮点数(float)，没有提及的话默认就是`1.0`。
+单位分类：包括以下几个枚举类：`WEIGHT`（重量单位）、`VOLUME`（体积单位）、`COUNT`: 个数单位、`UNKNOWN`: 无法确定单位或没有单位
+食材名称：全小写
+处理状态：如果包含预先处理动作（如："切好"、"去皮"等）返回true，否则返回false。
+
+### 输入描述：
+
+一段用户描述的食材信息。
+
+### 输出描述：
+
+```json
+{
+ "qty": float,  //数量
+"unit": "ENUM", //单位
+ "ingredient": "string", //食材名称
+ "is_prepped": boolean //是否包含预处理
+}
+```
+
+### 示例1
+
+```txt
+输入：
+来点盐
+输出：
+{"qty": 1.0, "unit": "UNKNOWN", "ingredient": "salt", "is_prepped": false}
+```
+
+### 示例2
+
+```txt
+输入：
+切好的土豆500克
+输出：
+{"qty": 500.0, "unit": "WEIGHT", "ingredient": "potato", "is_prepped": true}
+```
+
+### 提示词
+
+[5.md]
