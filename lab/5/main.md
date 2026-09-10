@@ -310,3 +310,55 @@ I really want to like this phone, but the battery life makes it unusable.
 ### 提示词
 
 [6.md]
+
+## PROMPT7 简历信息提取系统
+
+### 描述
+
+你需要编写 Prompt，将这些非结构化文本清洗为 JSON 格式，以便进行自动筛选。
+输出以下字段：
+
+最高学历：PHD (博士), MASTER (硕士), BACHELOR (本科/学士), COLLEGE (大专), OTHER (高中及以下/未提及)。
+工作年限：假设当前系统时间设定为 2024年，没有的话写0.
+技术栈：大写，包括如下这些技术：PYTHON、JAVASCRIPT、GO、VUE、REACT、JAVA。字母升序输出。
+求职状态：
+OPEN：代表随时可以去上班的意思
+PASSIVE：不考虑机会
+UNKNOWN：无法判断
+
+### 输入描述：
+
+一段非结构化描述的文本。
+
+### 输出描述：
+
+```json
+{
+  "degree": "ENUM", //最高学历
+  "yoe": 0, //工作年限
+  "skills": ["ENUM"], //技术栈
+  "status": "ENUM" //求职状态
+}
+```
+
+### 示例1
+
+```txt
+输入：
+2020年本科毕业后一直做Java开发，熟悉Spring，目前离职状态。
+输出：
+{"degree":"BACHELOR","yoe":4,"skills":["JAVA"],"status":"OPEN"}
+```
+
+### 示例2
+
+```txt
+输入：
+2016年参加工作的本科，精通Redis，GO，随时入职。
+输出：
+{"degree":"BACHELOR","yoe":8,"skills":["GO"],"status":"OPEN"}
+```
+
+### 提示词
+
+[7.md]
