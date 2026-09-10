@@ -785,3 +785,72 @@ Carrefour Paris | Subtotal: 1.200,00 € | Tax: 200,50 € | Points Used: 5000 p
 ### 提示词
 
 [15.md]
+
+## PROMPT16 医嘱信息提取系统2
+
+### 描述
+
+给定一段医嘱文本，根据以下规则解析并输出JSON。
+
+1. 包装规格判定
+   若药品名含“霉素”、“沙星”、“头孢”、“西林”等关键词，则归为抗生素（Antibiotic），包装规格为6片/板（优先级最高）。
+   否则，若药品名含“XR”、“CR”、“缓释”、“控释”等关键词，则归为缓控释（XR/CR），包装规格为7片/板。
+   其他情况为普通药品（Standard），包装规格为10片/板。
+   若同时满足抗生素和缓控释条件，以抗生素为准，并标记优先级覆盖。
+2. 理论用量计算
+   若描述中包含 不同时间节奏的给药，需分段累加计算。例如：“首剂2片，之后1片qd，共5天” → 2 + 1×(5-1) = 6。
+   普通的话计算：单次用量 × 每日频次 × 天数。
+   频次映射：qd→1，bid→2，tid→3，qid→4，qn→1（默认1）。
+3. 最终发药计算
+   遵循整板发药原则，严禁拆零。
+   所需板数 = 向上取整(理论用量 / 包装规格)。
+   最终发药数量 = 所需板数 × 包装规格
+
+请你写一段prompt完成以上任务。
+
+### 输入描述：
+
+一段自然语言描述的医嘱文本。
+
+### 输出描述：
+
+```json
+{
+    "drug_metadata": {
+        "drug_name": "string",
+        "category": "Antibiotic/XR/CR/Standard", //种类
+        "pack_size": int,  //包装规格
+        "is_priority_override": bool //优先级覆盖
+    },
+    "theoretical_total": int, //用量总和
+    "final_dispense": {
+        "packs_needed": int, //板数
+        "total_pills": int //发药数量
+    }
+}
+```
+
+### 示例1
+
+```txt
+输入：
+布洛芬缓释胶囊，首剂2粒；之后每次1粒，qd，再吃6天。
+输出：
+{
+"drug_metadata": {
+"drug_name": "布洛芬缓释胶囊",
+"category": "XR/CR",
+"pack_size": 7,
+"is_priority_override": false
+},
+"theoretical_total": 8,
+"final_dispense": {
+"packs_needed": 2,
+"total_pills": 14
+}
+}
+```
+
+### 提示词
+
+[16.md]
