@@ -560,3 +560,46 @@ Value(data=1, grad=1) Value(data=2, grad=3) Value(data=3, grad=2) Value(data=7, 
 ### 代码
 
 [13.py]
+
+## DL14 实现Adam优化算法
+
+### 描述
+
+实现Adam（Adaptive Moment Estimation）优化算法。Adam是一种结合了动量法和RMSprop的优化算法，它为每个参数计算自适应的学习率。
+
+### 输入描述：
+
+函数`adam_optimizer`接收以下参数：
+
+1. f：目标函数
+2. grad：梯度函数
+3. x0：初始参数值
+4. learning_rate：学习率（默认 $0.001$）
+5. beta1：一阶矩估计的衰减率（默认 $0.9$）
+6. beta2：二阶矩估计的衰减率（默认 $0.999$）
+7. epsilon：数值稳定性常数（默认 $1e-8$）
+8. num_iterations：迭代次数（默认 $10$）
+
+### 输出描述：
+
+返回一个numpy数组，表示优化后的参数值。
+
+### x示例1
+
+```txt
+输入：
+[1.0, 1.0]
+输出：
+[0.99000325 0.99000325]
+```
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+### 代码
+
+[14.py]
