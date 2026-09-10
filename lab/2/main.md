@@ -886,3 +886,73 @@ forward方法返回一个元组，包含：
 ### 代码
 
 [20.py]
+
+## DL21 实现自定义Dense层
+
+### 描述
+
+实现一个自定义的Dense（全连接）层类。该类需要继承基础Layer类，并实现神经网络中全连接层的所有基本功能。
+
+### 输入描述：
+
+Dense类需要实现以下方法：
+
+1. `__init__(self, n_units, input_shape=None)`：
+
+- n_units：输出神经元数量
+- input_shape：输入形状（可选）
+
+2. `initialize(self, optimizer)`：
+
+- 初始化权重W（使用1/sqrt(input_shape[0])作为范围进行正负区间的均匀分布采样）
+- 初始化偏置w0为零
+- 设置优化器
+
+3. `parameters(self)`：
+
+- 返回层中可训练参数总数
+
+4. `forward_pass(self, X, training=True)`：
+
+- 执行前向传播计算
+- 返回 X⋅W+w0
+
+5. `backward_pass(self, accum_grad)`：
+
+- 计算并返回梯度
+- 使用优化器更新参数
+
+6. `output_shape(self)`：
+
+- 返回输出形状(n_units,)
+
+### 输出描述：
+
+每个方法都需要返回特定的值：
+
+- initialize：无返回值
+- parameters：返回整数
+- forward_pass：返回numpy数组
+- backward_pass：返回numpy数组
+- output_shape：返回元组
+
+### 示例1
+
+```txt
+输入：
+[[1, 2]]
+输出：
+Forward pass output: [[ 0.10162127 -0.33551992 -0.64490545]]
+Backward pass output: [[ 0.20816524 -0.22928937]]
+```
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+### 代码
+
+[21.py]
