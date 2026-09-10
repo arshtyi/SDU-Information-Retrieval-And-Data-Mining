@@ -155,3 +155,67 @@ I really want to like this phone, but the battery life makes it unusable.
 ### 提示词
 
 [3.md]
+
+## PROMPT4 诊疗数据解析
+
+### 描述
+
+你需要根据用户输入的自然语言文本，按照定义好的规则提取信息并输出 JSON。
+
+1. 字段定义
+   1. patient_mask：取出输入里的姓名首字符，拼接 \*\*。
+   2. symptoms
+      根据如下关键词到不同的symptoms，输出按 ASCII 升序 排列。
+      |Enum | Keywords|
+      |:-|:-|
+      |CHEST_PAIN|胸痛, 心口痛, 胸闷, 心绞痛|
+      |DYSPNEA|呼吸困难, 喘不上气, 气短, 憋气|
+      |FEVER|发烧, 发热, 高烧|
+      |TRAUMA|外伤, 车祸, 流血, 骨折, 摔伤|
+      |DIZZINESS|头晕, 晕眩, 昏昏沉沉|
+   3. temperature
+      保留 $1$ 位的小数，没有 $0.0$。如果 $>39.0$，则symptoms里要增加FEVER症状。
+2. 病情等级判定
+   1. 含 CHEST_PAIN 或 DYSPNEA → L1 (RULE_CRITICAL)
+   2. 含 TRAUMA 或 temperature > 39.0 → L2 (RULE_URGENT)
+   3. 都不是的话，返回 L3 (RULE_NORMAL)
+
+请你根据上述信息写出对应的prompt来解决问题。
+
+### 输入描述：
+
+一段自然语言描述的用户输入病情。
+
+### 输出描述：
+
+```json
+{
+    "patient_mask": "string", //拼接后的姓名
+    "symptoms": ["ENUM"...], //症状列表
+    "temperature": float, //温度
+    "triage_result": "L1/L2/L3", //分诊结果
+    "trigger_rule": "RULE_..." //触犯规则
+}
+```
+
+### 示例1
+
+```txt
+输入：
+患者赵卫华，说自己胸闷得厉害，站起来就头晕，体温 36.8 度。
+输出：
+{"patient_mask":"赵**","symptoms":["CHEST_PAIN","DYSPNEA"],"temperature":36.8,"triage_result":"L1","trigger_rule":"RULE_CRITICAL"}
+```
+
+### 示例2
+
+```txt
+输入：
+患者王大锤，因为昨晚喝多了感觉昏昏沉沉的，刚才量体温是39度，不过没有胸痛，也没有受外伤。
+输出：
+{"patient_mask":"王**","symptoms":["DIZZINESS"],"temperature":39.0,"triage_result":"L3","trigger_rule":"RULE_NORMAL"}
+```
+
+### 提示词
+
+[4.md]
