@@ -1,13 +1,14 @@
-import numpy as np
 import copy
 import math
+
+import numpy as np
 
 # DO NOT CHANGE SEED
 np.random.seed(42)
 
 
 # DO NOT CHANGE LAYER CLASS
-class Layer(object):
+class Layer:
     def set_input_shape(self, shape):
 
         self.input_shape = shape

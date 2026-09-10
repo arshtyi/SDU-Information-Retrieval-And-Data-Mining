@@ -1,5 +1,4 @@
 import numpy as np
-import math
 
 
 def softmax(scores: list[float]) -> list[float]:

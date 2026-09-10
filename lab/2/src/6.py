@@ -1,5 +1,4 @@
 import numpy as np
-from typing import Union
 
 
 def leaky_relu(z, alpha=0.01):
