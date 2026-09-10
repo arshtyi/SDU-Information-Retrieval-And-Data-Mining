@@ -1,5 +1,5 @@
-from itertools import combinations
 from collections import defaultdict
+from itertools import combinations
 
 
 def generate_frequent_itemsets(transactions, min_support):
