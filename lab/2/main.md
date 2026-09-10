@@ -69,6 +69,8 @@ $$\sigma(z)=\frac{1}{1+\mathrm{e}^{-z}}$$
 
 ### 分析
 
+$$softmax(x)=\frac{\mathrm{e}^x}{\sum\mathrm{e}^x}$$
+
 ### 代码
 
 [2.py]
@@ -121,3 +123,40 @@ $$mse=\frac{1}{n}\sum_{i=1}^n(predictions_i-label_i)^2$$
 ### 代码
 
 [3.py]
+
+## DL4 Log Softmax函数的实现
+
+### 描述
+
+实现log-softmax函数。log-softmax是softmax函数的对数形式，在深度学习中常用于提高数值计算的稳定性。
+需要在运算之前减去最大值保证数值稳定性。
+
+### 输入描述：
+
+输入一个列表，列表中的元素为浮点数。
+
+### 输出描述：
+
+输出一个numpy数组，代表log-softmax的结果。
+
+### 示例1
+
+```txt
+输入：
+[1.0, 2.0, 3.0]
+输出：
+[-2.40760596 -1.40760596 -0.40760596]
+```
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+$$log\_softmax(x_i)=x_i-\max(x)-\log\sum_j\mathrm{e}^{x_j-\max(x)}$$
+
+### 代码
+
+[4.py]
