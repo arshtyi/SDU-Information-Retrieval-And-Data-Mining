@@ -854,3 +854,125 @@ Carrefour Paris | Subtotal: 1.200,00 € | Tax: 200,50 € | Points Used: 5000 p
 ### 提示词
 
 [16.md]
+
+## PROMPT17 健身动作解析2
+
+### 描述
+
+给定一段非结构化的健身训练文本，请你阅读样例，根据以下规则提取信息并输出JSON。
+
+1. 动作名称映射：将文本中的动作名称映射为标准枚举值。映射规则为：“卧推”、“平板卧推”、“Bench Press”映射为BENCH_PRESS；“上斜”、“上胸”映射为INCLINE_PRESS；“深蹲”、“蹲腿”、“Squat”映射为SQUAT；“硬拉”、“拉背”、“Deadlift”映射为DEADLIFT；“推举”、“肩推”映射为OHP；其他动作映射为OTHER。
+2. 重量归一化：目标单位为千克（kg）。若文本中出现磅（lbs或磅），需转换为千克（除以2.2）。若提及如“一边20kg”，则重量计算为：重量 = (单边重量 × 2) + 杆重。否则直接输出总重。
+   如果你在做深蹲 (SQUAT) 或者 硬拉 (DEADLIFT)，你用的是重型奥林匹克杆，那种杆子本身就有 25kg。
+   如果你在做卧推 (BENCH_PRESS) 或者 推举 (OHP)，你用的是标准力量杆，本身重量是 15kg。
+   至于其他的动作（统称为 OTHER），我们就默认它是哑铃或者固定器械，不需要考虑杆重（即 0kg）。
+3. 练习模式：包括：标准、加号和逗号。具体见不同样例。
+
+多动作处理：若文本中包含多个动作，需分别解析并输出多条记录。如果某个动作，组数没提到，则延续上一个动作的数据。
+
+### 输入描述：
+
+一段自然语言描述的健身训练文本。
+
+### 输出描述：
+
+```json
+{
+     "entries": [
+     {
+         "action": "ENUM", // BENCH_PRESS, SQUAT, DEADLIFT, OHP, OTHER
+         "final_weight": float, // 计算后的最终总重量 (kg)
+         "sets": int, // 解析出的组数
+         "reps": int, // 解析出的每组次数（或总次数）
+         "exercise_mode": "string"// 练习模式， STANDARD (标准), REST_PAUSE (+号), CLUSTER (逗号)
+     }
+     ]
+}
+```
+
+### 示例1
+
+```txt
+输入：
+深蹲 100kg 10+5+3
+输出：
+{
+"entries": [
+{
+"action": "SQUAT",
+"final_weight": 100.0,
+"sets": 1,
+"reps": 18,
+"exercise_mode": "REST_PAUSE"
+}
+]
+}
+```
+
+### 示例2
+
+```txt
+输入：
+平板卧推 80kg 5x5
+输出：
+{
+entries": [
+{
+"action": "BENCH_PRESS",
+"final_weight": 80.0,
+"sets": 5,
+"reps": 5,
+"exercise_mode": "STANDARD"
+}
+]
+}
+```
+
+### 示例3
+
+```txt
+输入：
+硬拉 150kg 2,2,2,2,2
+输出：
+{
+"entries": [
+{
+"action": "DEADLIFT",
+"final_weight": 150.0,
+"sets": 5,
+"reps": 2,
+"exercise_mode": "CLUSTER"
+}
+]
+}
+```
+
+### 示例4
+
+```txt
+输入：
+硬拉一边25kg 5,5,5；卧推每边25
+输出：
+{
+"entries": [
+{
+"action": "DEADLIFT",
+"final_weight": 75.0,
+"sets": 3,
+"reps": 5,
+"exercise_mode": "CLUSTER"
+},
+{
+"action": "BENCH_PRESS",
+"final_weight": 65.0,
+"sets": 3,
+"reps": 5,
+"exercise_mode": "CLUSTER"
+}
+]
+}
+```
+
+### 提示词
+
+[17.md]
