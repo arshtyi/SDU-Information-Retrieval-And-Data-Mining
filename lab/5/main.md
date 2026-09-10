@@ -268,3 +268,45 @@ I really want to like this phone, but the battery life makes it unusable.
 ### 提示词
 
 [5.md]
+
+## PROMPT6 流水记录清洗系统
+
+### 描述
+
+编写 Prompt，将单条流水记录清洗为标准 JSON，以便进行财务分析。
+
+### 输入描述：
+
+一段自然语言描述的流水记录。
+
+### 输出描述：
+
+```json
+{
+  "amount": 0.0, //四舍五入，保留1位正数
+  "currency": "", //包括：CNY、USD、EUR、UNKNOWN
+  "direction": "" //交易方向，包括：OUT (支出) 、IN (收入)、UNKNOWN（无法判断）
+}
+```
+
+### 示例1
+
+```txt
+输入：
+收到一笔钱 1,024.56 - 2024年项目结款(第3期)
+输出：
+{"amount": 1024.6,"currency": "UNKNOWN","direction": "IN"}
+```
+
+### 示例2
+
+```txt
+输入：
+收到退款 ¥199.9
+输出：
+{"amount":200.0,"currency":"CNY","direction":"IN"}
+```
+
+### 提示词
+
+[6.md]
