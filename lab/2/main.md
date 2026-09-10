@@ -685,3 +685,51 @@ Value(data=1, grad=1) Value(data=2, grad=3) Value(data=3, grad=2) Value(data=7, 
 ### 代码
 
 [16.py]
+
+## DL17 实现长短期记忆（LSTM）网络
+
+### 描述
+
+实现一个长短期记忆（LSTM）网络。LSTM是一种特殊的循环神经网络，能够学习长期依赖关系。LSTM通过门控机制来控制信息的流动，包括遗忘门、输入门和输出门。
+
+LSTM的核心组件：
+
+1. 遗忘门（forget gate）：决定丢弃哪些信息
+2. 输入门（input gate）：决定更新哪些信息
+3. 候选细胞状态（candidate cell state）：创建新的候选值
+4. 细胞状态更新（cell state update）：更新长期记忆
+5. 输出门（output gate）：决定输出哪些信息
+
+### 输入描述：
+
+需要实现LSTM类，包含以下方法：
+
+1. `__init__(self, input_size, hidden_size)`：
+
+- input_size：输入维度
+- hidden_size：隐藏层维度
+
+2. `forward(self, x, initial_hidden_state, initial_cell_state)`：
+
+- x：输入序列
+- initial_hidden_state：初始隐藏状态
+- initial_cell_state：初始细胞状态
+
+### 输出描述：
+
+forward方法返回一个元组，包含：
+
+1. outputs：所有时间步的隐藏状态
+2. final_h：最终隐藏状态
+3. final_c：最终细胞状态
+
+### 备注：
+
+1. 对应的输入、输出已给出，您只用实现核心功能函数即可。
+2. 支持numpy、scipy、pandas、scikit-learn库。
+
+### 分析
+
+### 代码
+
+[17.py]
