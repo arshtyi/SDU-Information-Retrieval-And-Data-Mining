@@ -9,4 +9,7 @@ homework:
 lab:
   cargo run --manifest-path lab/script/Cargo.toml --release
 
-all: homework lab
+bank:
+  cargo run --manifest-path bank/script/Cargo.toml --release
+
+all: homework lab bank
